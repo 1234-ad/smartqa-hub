@@ -1,0 +1,150 @@
+{
+  "browsers": ["chromium", "firefox"],
+  "headless": true,
+  "timeout": 30000,
+  "retries": 3,
+  "parallel": true,
+  "maxConcurrency": 5,
+  
+  "ai": {
+    "enabled": true,
+    "confidenceThreshold": 0.3,
+    "generateEdgeCases": true,
+    "generateNegativeTests": true,
+    "patterns": {
+      "login": true,
+      "registration": true,
+      "search": true,
+      "form": true,
+      "navigation": true
+    }
+  },
+  
+  "visual": {
+    "enabled": true,
+    "threshold": 0.1,
+    "includeAA": false,
+    "alpha": 0.1,
+    "diffColor": [255, 0, 255],
+    "baselineDir": "./tests/visual/baselines",
+    "outputDir": "./tests/visual/output",
+    "diffDir": "./tests/visual/diffs",
+    "viewports": [
+      { "width": 1920, "height": 1080, "name": "desktop" },
+      { "width": 768, "height": 1024, "name": "tablet" },
+      { "width": 375, "height": 667, "name": "mobile" }
+    ]
+  },
+  
+  "api": {
+    "enabled": true,
+    "timeout": 30000,
+    "retries": 3,
+    "validateSchema": true,
+    "captureHeaders": true,
+    "captureBody": true,
+    "loadTesting": {
+      "enabled": true,
+      "defaultConcurrency": 10,
+      "defaultDuration": 60000,
+      "defaultRampUp": 5000
+    }
+  },
+  
+  "dashboard": {
+    "enabled": true,
+    "port": 3000,
+    "host": "localhost",
+    "realtime": true,
+    "maxResults": 1000,
+    "refreshInterval": 5000
+  },
+  
+  "reporting": {
+    "formats": ["json", "html", "junit"],
+    "outputDir": "./reports",
+    "includeScreenshots": true,
+    "includeLogs": true,
+    "generateTrends": true
+  },
+  
+  "integrations": {
+    "slack": {
+      "enabled": false,
+      "webhook": "",
+      "channels": {
+        "success": "#qa-success",
+        "failure": "#qa-alerts"
+      }
+    },
+    "jira": {
+      "enabled": false,
+      "url": "",
+      "username": "",
+      "token": "",
+      "project": "",
+      "issueType": "Bug"
+    },
+    "github": {
+      "enabled": false,
+      "token": "",
+      "repo": "",
+      "createIssues": false
+    }
+  },
+  
+  "performance": {
+    "enabled": true,
+    "metrics": ["FCP", "LCP", "CLS", "FID", "TTFB"],
+    "thresholds": {
+      "FCP": 2000,
+      "LCP": 4000,
+      "CLS": 0.1,
+      "FID": 300,
+      "TTFB": 800
+    }
+  },
+  
+  "accessibility": {
+    "enabled": true,
+    "standards": ["wcag2a", "wcag2aa"],
+    "includeWarnings": true,
+    "ignoreRules": []
+  },
+  
+  "security": {
+    "enabled": true,
+    "scanHeaders": true,
+    "checkSSL": true,
+    "detectXSS": true,
+    "checkCSP": true
+  },
+  
+  "data": {
+    "faker": {
+      "locale": "en",
+      "seed": null
+    },
+    "testData": {
+      "users": "./data/users.json",
+      "products": "./data/products.json",
+      "orders": "./data/orders.json"
+    }
+  },
+  
+  "environment": {
+    "baseUrl": "http://localhost:3000",
+    "apiUrl": "http://localhost:3000/api",
+    "timeout": 30000,
+    "retries": 3
+  },
+  
+  "logging": {
+    "level": "info",
+    "file": true,
+    "console": true,
+    "structured": true,
+    "maxFiles": 5,
+    "maxSize": "10m"
+  }
+}
